@@ -18,4 +18,9 @@ public class MovieServiceImpl implements MovieService {
     public List<Movie> getAllMoviesJson() {
         return movieDao.getAllMovies();
     }
+
+    @Override
+    public List<Movie> getThreeRandomMoviesJson() {
+        return movieDao.getThreeRandomMovies();
+    }
 }

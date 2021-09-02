@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface MovieService {
     List<Movie> getAllMoviesJson();
+    List<Movie> getThreeRandomMoviesJson();
 }

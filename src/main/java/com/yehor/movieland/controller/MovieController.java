@@ -20,4 +20,9 @@ public class MovieController {
     public List<Movie> getAllMoviesJson() {
         return movieService.getAllMoviesJson();
     }
+
+    @GetMapping("random")
+    public List<Movie> getThreeRandomMoviesJson() {
+        return movieService.getThreeRandomMoviesJson();
+    }
 }
