@@ -4,10 +4,10 @@ package com.yehor.movieland.entity;
 import java.util.Date;
 
 public class Movie {
-    private int id; // TODO bigInt (long?) !
+    private int id;
     private String name_russian;
     private String name_native;
-    private Date year_of_release; // TODO java.sql.Date vs java.util.Date?
+    private Date year_of_release;
     private String description;
     private double rating;
     private double price;

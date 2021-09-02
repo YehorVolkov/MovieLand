@@ -2,7 +2,7 @@
 
 <web-app>
 
-    <display-name>TODOASDASDASD</display-name>
+    <display-name>MovieLand</display-name>
 
     <servlet>
         <servlet-name>movieland</servlet-name>
@@ -14,11 +14,6 @@
         <servlet-name>movieland</servlet-name>
         <url-pattern>/*</url-pattern>
     </servlet-mapping>
-    <!--TODO "/*" or "/" ?-->
-
-<!--    <listener>
-        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-    </listener>-->
 
     <context-param>
         <param-name>contextConfigLocation</param-name>

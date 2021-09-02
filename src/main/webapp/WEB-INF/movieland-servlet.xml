@@ -11,39 +11,25 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="com.yehor.movieland.controller"/>
+    <context:component-scan base-package="com.yehor.movieland"/>
 
-    <!--    <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
-        <property name="location" value="classpath:app.properties"/>
-    </bean>-->
+        <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <property name="location" value="classpath:application.properties"/>
+    </bean>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <!--
-                <property name="driverClass" value="${jdbc.driverClassName}"/>
-                <property name="jdbcUrl" value="${jdbc.url}"/>
-                <property name="user" value="${jdbc.username}"/>
-                <property name="password" value="${jdbc.password}"/>
-        -->
-
-        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/movieland"/>
-        <property name="username" value="root"/>
-        <property name="password" value="root"/>
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
     </bean>
 
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <bean id="movieDaoImpl" class="com.yehor.movieland.dao.jdbc.MovieDaoImpl"/>
-
-    <bean id="movieService" class="com.yehor.movieland.service.impl.MovieServiceImpl">
-        <property name="movieDao" ref="movieDaoImpl"/>
-    </bean>
-
-    <!--TODO where should all these beans be? root-context?-->
+    <bean id="movieRowMapper" class="com.yehor.movieland.dao.jdbc.mapper.MovieRowMapper"/>
 
     <mvc:annotation-driven/>
-    <!-- TODO why exactly do we need mvc:annotation-driven? Need a deep-dive!-->
 
 </beans>
