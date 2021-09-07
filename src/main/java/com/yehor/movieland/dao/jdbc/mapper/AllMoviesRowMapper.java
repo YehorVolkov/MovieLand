@@ -16,7 +16,7 @@ public class AllMoviesRowMapper implements RowMapper<Movie> {
         .id(resultSet.getInt("id"))
         .nameRussian(resultSet.getString("name_russian"))
         .nameNative(resultSet.getString("name_native"))
-        .yearOfRelease(resultSet.getDate("year_of_release").toLocalDate()) // todo ok to do such things here?
+        .yearOfRelease(resultSet.getDate("year_of_release").toLocalDate())
         .rating(resultSet.getDouble("rating"))
         .price(resultSet.getDouble("price"))
         .picturePath(resultSet.getString("picture_path"))
