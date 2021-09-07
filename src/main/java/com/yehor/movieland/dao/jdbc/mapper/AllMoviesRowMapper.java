@@ -13,13 +13,13 @@ public class AllMoviesRowMapper implements RowMapper<Movie> {
     @Override
     public Movie mapRow(ResultSet resultSet, int i) throws SQLException {
         return Movie.builder()
-        .id(resultSet.getInt("id"))
-        .nameRussian(resultSet.getString("name_russian"))
-        .nameNative(resultSet.getString("name_native"))
-        .yearOfRelease(resultSet.getDate("year_of_release").toLocalDate()) // todo ok to do such things here?
-        .rating(resultSet.getDouble("rating"))
-        .price(resultSet.getDouble("price"))
-        .picturePath(resultSet.getString("picture_path"))
-        .build();
+            .id(resultSet.getInt("id"))
+            .nameRussian(resultSet.getString("name_russian"))
+            .nameNative(resultSet.getString("name_native"))
+            .yearOfRelease(resultSet.getDate("year_of_release").toLocalDate())
+            .rating(resultSet.getDouble("rating"))
+            .price(resultSet.getDouble("price"))
+            .picturePath(resultSet.getString("picture_path"))
+            .build();
     }
 }
