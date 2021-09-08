@@ -84,4 +84,24 @@ public class MovieControllerTest {
                 .andExpect(jsonPath("$[1].price", is(200.6)))
                 .andExpect(jsonPath("$[1].picturePath", is("https://images-na.ssl-images-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1._SY209_CR2,0,140,209_.jpg")));
     }
+
+    @Test
+    public void testGetThreeRandomMoviesJson() throws Exception {
+        mockMvc.perform(get("/movie/random"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(new MediaType(
+                        MediaType.APPLICATION_JSON.getType(),
+                        MediaType.APPLICATION_JSON.getSubtype()
+                )));
+    }
+
+    @Test
+    public void testGetMoviesByGenre() throws Exception {
+        mockMvc.perform(get("/movie/genre/5"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(new MediaType(
+                        MediaType.APPLICATION_JSON.getType(),
+                        MediaType.APPLICATION_JSON.getSubtype()
+                )));
+    }
 }

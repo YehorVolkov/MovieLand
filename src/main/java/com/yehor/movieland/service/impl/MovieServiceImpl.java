@@ -21,4 +21,9 @@ public class MovieServiceImpl implements MovieService {
     public Iterable<Movie> getThreeRandomMoviesJson() {
         return movieDao.getThreeRandomMovies();
     }
+
+    @Override
+    public Iterable<Movie> getMoviesByGenre(int genreId) {
+        return movieDao.getMoviesByGenre(genreId);
+    }
 }

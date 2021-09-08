@@ -5,4 +5,5 @@ import com.yehor.movieland.entity.Movie;
 public interface MovieDao {
     Iterable<Movie> findAll();
     Iterable<Movie> getThreeRandomMovies();
+    Iterable<Movie> getMoviesByGenre(int genreId);
 }
