@@ -3,19 +3,22 @@ package com.yehor.movieland.service.impl;
 import com.yehor.movieland.dao.MovieDao;
 import com.yehor.movieland.entity.Movie;
 import com.yehor.movieland.service.MovieService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
+@AllArgsConstructor
 public class MovieServiceImpl implements MovieService {
 
-    @Autowired
-    private MovieDao movieDao;
+    private final MovieDao movieDao;
 
     @Override
-    public List<Movie> getAllMoviesJson() {
-        return movieDao.getAllMovies();
+    public Iterable<Movie> findAll() {
+        return movieDao.findAll();
+    }
+
+    @Override
+    public Iterable<Movie> getThreeRandomMoviesJson() {
+        return movieDao.getThreeRandomMovies();
     }
 }
