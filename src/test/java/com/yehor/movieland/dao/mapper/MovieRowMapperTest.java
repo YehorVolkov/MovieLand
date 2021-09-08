@@ -1,6 +1,6 @@
 package com.yehor.movieland.dao.mapper;
 
-import com.yehor.movieland.dao.jdbc.mapper.AllMoviesRowMapper;
+import com.yehor.movieland.dao.jdbc.mapper.MovieRowMapper;
 import com.yehor.movieland.entity.Movie;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,10 +16,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class AllMoviesRowMapperTest {
+public class MovieRowMapperTest {
 
     @InjectMocks
-    AllMoviesRowMapper rowMapper;
+    MovieRowMapper rowMapper;
 
     @BeforeEach
     public void init() {
@@ -27,7 +27,7 @@ public class AllMoviesRowMapperTest {
     }
 
     @Test
-    public void testAllMoviesRowMapper() throws SQLException {
+    public void testMovieRowMapper() throws SQLException {
         int expectedId = 12;
         String expectedNameRussian = "Титаник";
         String expectedNameNative = "Titanic";
