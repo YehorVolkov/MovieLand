@@ -5,4 +5,5 @@ import com.yehor.movieland.entity.Movie;
 public interface MovieService {
     Iterable<Movie> findAll();
     Iterable<Movie> getThreeRandomMoviesJson();
+    Iterable<Movie> getMoviesByGenre(int genreId);
 }
