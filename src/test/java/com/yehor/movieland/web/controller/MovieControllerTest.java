@@ -86,7 +86,7 @@ public class MovieControllerTest {
     }
 
     @Test
-    public void testGetThreeRandomMoviesJson() throws Exception {
+    public void testGetThreeRandomMovies() throws Exception {
         mockMvc.perform(get("/movie/random"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(new MediaType(

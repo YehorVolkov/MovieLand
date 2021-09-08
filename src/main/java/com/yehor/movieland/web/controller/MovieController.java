@@ -28,8 +28,8 @@ public class MovieController {
     }
 
     @GetMapping("random")
-    public Iterable<Movie> getThreeRandomMoviesJson() {
-        return movieService.getThreeRandomMoviesJson();
+    public Iterable<Movie> getThreeRandomMovies() {
+        return movieService.getThreeRandomMovies();
     }
 
     @GetMapping("genre/{genreId}")

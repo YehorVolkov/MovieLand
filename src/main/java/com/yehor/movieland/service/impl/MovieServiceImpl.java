@@ -40,7 +40,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Iterable<Movie> getThreeRandomMoviesJson() {
+    public Iterable<Movie> getThreeRandomMovies() {
         return movieDao.getThreeRandomMovies();
     }
 
