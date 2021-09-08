@@ -24,6 +24,16 @@ public class JdbcMovieDao implements MovieDao {
     }
 
     @Override
+    public Iterable<Movie> findAllSortByRating() {
+        return jdbcTemplate.query(FIND_ALL_MOVIES_QUERY + " ORDER BY rating desc", movieRowMapper);
+    }
+
+    @Override
+    public Iterable<Movie> findAllSortByPrice(String priceSortingOrder) {
+        return jdbcTemplate.query(FIND_ALL_MOVIES_QUERY + " ORDER BY price " + priceSortingOrder, movieRowMapper);
+    }
+
+    @Override
     public Iterable<Movie> getThreeRandomMovies() {
         return jdbcTemplate.query(GET_THREE_RANDOM_MOVIES_QUERY, movieRowMapper);
     }
@@ -31,5 +41,15 @@ public class JdbcMovieDao implements MovieDao {
     @Override
     public Iterable<Movie> getMoviesByGenre(int genreId) {
         return jdbcTemplate.query(GET_MOVIES_MY_GENRE, movieRowMapper, genreId);
+    }
+
+    @Override
+    public Iterable<Movie> getMoviesByGenreSortByRating(int genreId) {
+        return jdbcTemplate.query(GET_MOVIES_MY_GENRE + " ORDER BY rating desc", movieRowMapper, genreId);
+    }
+
+    @Override
+    public Iterable<Movie> getMoviesByGenreSortByPrice(int genreId, String priceSortingOrder) {
+        return jdbcTemplate.query(GET_MOVIES_MY_GENRE + " ORDER BY rating " + priceSortingOrder, movieRowMapper, genreId);
     }
 }

@@ -3,10 +3,7 @@ package com.yehor.movieland.web.controller;
 import com.yehor.movieland.entity.Movie;
 import com.yehor.movieland.service.MovieService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("movie")
@@ -20,6 +17,16 @@ public class MovieController {
         return movieService.findAll();
     }
 
+    @GetMapping(params = {"rating"})
+    public Iterable<Movie> findAllSortByRating(@RequestParam(name = "rating") String ratingSortingOrder) {
+        return movieService.findAllSortByRating(ratingSortingOrder);
+    }
+
+    @GetMapping(params = {"price"})
+    public Iterable<Movie> findAllSortByPrice(@RequestParam(name = "price") String priceSortingOrder) {
+        return movieService.findAllSortByPrice(priceSortingOrder);
+    }
+
     @GetMapping("random")
     public Iterable<Movie> getThreeRandomMoviesJson() {
         return movieService.getThreeRandomMoviesJson();
@@ -28,5 +35,15 @@ public class MovieController {
     @GetMapping("genre/{genreId}")
     public Iterable<Movie> getMoviesByGenre(@PathVariable int genreId) {
         return movieService.getMoviesByGenre(genreId);
+    }
+
+    @GetMapping(value = "genre/{genreId}", params = {"rating"})
+    public Iterable<Movie> getMoviesByGenreSortByRating(@PathVariable int genreId, @RequestParam(name = "rating") String ratingSortingOrder) {
+        return movieService.getMoviesByGenreSortByRating(genreId, ratingSortingOrder);
+    }
+
+    @GetMapping(value = "genre/{genreId}", params = {"price"})
+    public Iterable<Movie> getMoviesByGenreSortByPrice(@PathVariable int genreId, @RequestParam(name = "price") String priceSortingOrder) {
+        return movieService.getMoviesByGenreSortByPrice(genreId, priceSortingOrder);
     }
 }
