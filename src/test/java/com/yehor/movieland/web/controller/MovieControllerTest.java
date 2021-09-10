@@ -3,6 +3,7 @@ package com.yehor.movieland.web.controller;
 import com.yehor.movieland.dao.MovieDao;
 import com.yehor.movieland.entity.Movie;
 import com.yehor.movieland.service.impl.MovieServiceImpl;
+import com.yehor.movieland.util.MovieRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -16,6 +17,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import static org.hamcrest.Matchers.is;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -59,7 +61,9 @@ public class MovieControllerTest {
                 .picturePath("https://images-na.ssl-images-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1._SY209_CR2,0,140,209_.jpg")
                 .build();
 
-        when(movieServiceMock.findAll()).thenReturn(List.of(movie1, movie2));
+        MovieRequest movieRequest = mock(MovieRequest.class);
+
+        when(movieServiceMock.findAll(movieRequest)).thenReturn(List.of(movie1, movie2));
 
         mockMvc.perform(get("/movie"))
                 .andExpect(status().isOk())
@@ -86,7 +90,7 @@ public class MovieControllerTest {
     }
 
     @Test
-    public void testGetThreeRandomMovies() throws Exception {
+    public void testFindThreeRandomMovies() throws Exception {
         mockMvc.perform(get("/movie/random"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(new MediaType(
@@ -96,7 +100,7 @@ public class MovieControllerTest {
     }
 
     @Test
-    public void testGetMoviesByGenre() throws Exception {
+    public void testFindMoviesByGenre() throws Exception {
         mockMvc.perform(get("/movie/genre/5"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(new MediaType(

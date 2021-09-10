@@ -2,6 +2,7 @@ package com.yehor.movieland.web.controller;
 
 import com.yehor.movieland.entity.Movie;
 import com.yehor.movieland.service.MovieService;
+import com.yehor.movieland.util.MovieRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,38 +13,40 @@ public class MovieController {
 
     private final MovieService movieService;
 
-    @GetMapping
+    @GetMapping("/")
     public Iterable<Movie> findAll() {
-        return movieService.findAll();
+        return movieService.findAll(new MovieRequest());
     }
 
     @GetMapping(params = {"rating"})
-    public Iterable<Movie> findAllSortByRating(@RequestParam(name = "rating") String ratingSortingOrder) {
-        return movieService.findAllSortByRating(ratingSortingOrder);
+    public Iterable<Movie> findAllSortByRating(@RequestParam(name = "rating") String sortingDirection) {
+        // todo sortingDirection nullcheck moved to MovieRequest. Is it ok???
+        return movieService.findAll(new MovieRequest("rating", sortingDirection));
     }
 
     @GetMapping(params = {"price"})
-    public Iterable<Movie> findAllSortByPrice(@RequestParam(name = "price") String priceSortingOrder) {
-        return movieService.findAllSortByPrice(priceSortingOrder);
+    public Iterable<Movie> findAllSortByPrice(@RequestParam(name = "price") String sortingDirection) {
+        return movieService.findAll(new MovieRequest("price", sortingDirection));
     }
 
     @GetMapping("random")
-    public Iterable<Movie> getThreeRandomMovies() {
-        return movieService.getThreeRandomMovies();
+    public Iterable<Movie> findThreeRandomMovies() {
+        return movieService.findThreeRandomMovies();
     }
 
     @GetMapping("genre/{genreId}")
-    public Iterable<Movie> getMoviesByGenre(@PathVariable int genreId) {
-        return movieService.getMoviesByGenre(genreId);
+    public Iterable<Movie> findMoviesByGenre(@PathVariable int genreId) {
+        return movieService.findMoviesByGenre(genreId, new MovieRequest());
     }
 
     @GetMapping(value = "genre/{genreId}", params = {"rating"})
-    public Iterable<Movie> getMoviesByGenreSortByRating(@PathVariable int genreId, @RequestParam(name = "rating") String ratingSortingOrder) {
-        return movieService.getMoviesByGenreSortByRating(genreId, ratingSortingOrder);
+    // todo what's wrong with genreId being int? we get bad request if we don't pass integer
+    public Iterable<Movie> findMoviesByGenreSortByRating(@PathVariable int genreId, @RequestParam(name = "rating") String sortingDirection) {
+        return movieService.findMoviesByGenre(genreId, new MovieRequest("rating", sortingDirection));
     }
 
     @GetMapping(value = "genre/{genreId}", params = {"price"})
-    public Iterable<Movie> getMoviesByGenreSortByPrice(@PathVariable int genreId, @RequestParam(name = "price") String priceSortingOrder) {
-        return movieService.getMoviesByGenreSortByPrice(genreId, priceSortingOrder);
+    public Iterable<Movie> findMoviesByGenreSortByPrice(@PathVariable int genreId, @RequestParam(name = "price") String sortingDirection) {
+        return movieService.findMoviesByGenre(genreId, new MovieRequest("price", sortingDirection));
     }
 }
