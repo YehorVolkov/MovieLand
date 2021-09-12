@@ -10,7 +10,7 @@
     <import resource="data-context.xml"/>
 
     <context:component-scan base-package="com.yehor.movieland">
-        <context:exclude-filter type="regex" expression="com\.yehor\.movieland\.web\.controller\..*"/>
+        <context:exclude-filter type="regex" expression="com\.yehor\.movieland\.web\..*"/>
     </context:component-scan>
 
 </beans>
